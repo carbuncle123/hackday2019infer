@@ -1,10 +1,13 @@
 from flask import Flask, request, jsonify
 import oseti
 
+import os
+
 app = Flask(__name__)
 
-@app.route('/api/score', methods=['GET'])
-def calculateScore():
+
+@app.route('/score', methods=['GET'])
+def calculate_score():
 	sentence = request.args.get('q')
 	print('Sentence', sentence)
 	analyzer = oseti.Analyzer()
@@ -14,6 +17,11 @@ def calculateScore():
 
 	return(jsonify(score=score))
 
+
+@app.route('/')
+def index():
+	return 'Hello World!'
+
+
 if __name__ == '__main__':
-	app.run()
-	#app.run(host='0.0.0.0', port=80)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
