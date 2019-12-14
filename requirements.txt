@@ -9,3 +9,4 @@ neologdn==0.4
 oseti==0.2
 sengiri==0.2.1
 Werkzeug==0.16.0
+gunicorn==20.0.4
